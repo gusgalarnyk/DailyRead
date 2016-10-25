@@ -1,0 +1,26 @@
+{
+  /*
+  Daily Read is made by P. Augustus Galarnyk around October 2016.
+  For more information about the author please visit https://www.linkedin.com/in/p-augustus-galarnyk-175487108.
+  */
+  
+  //manifest_version specifies how this file should be read. 2 is the current version.
+  "manifest_version": 2,
+
+  //name specifies the extensions title. description defines what can be read on the extension page. The version number will be displayed in the extension page as well.
+  "name": "Daily Read",
+  "description": "This extension pulls up the websites you read daily with two clicks.",
+  "version": "1.0",
+
+  //icons specifies the images used for the various extension needs. 128 for publishing and 48 for general use.
+  "icons": {"128": "NewsPaper_128x128.png"},
+
+  //browser_action means the icon can be used on any page instead of being page dependent. default_pop specifies the html file to read.
+  "browser_action": {"default_popup": "DailyRead.html"},
+  
+  //tabs allows us to open tabs using the chrome api. storage allows for saving and loading player preferences, in this case websites.
+  "permissions": [
+    "tabs",
+    "storage"
+  ]
+}

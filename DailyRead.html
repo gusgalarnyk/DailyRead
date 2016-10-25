@@ -1,0 +1,195 @@
+<!doctype html>
+<!--
+ Daily Read Daily Read is made by P. Augustus Galarnyk around October 2016.
+ For more information about the author please visit https://www.linkedin.com/in/p-augustus-galarnyk-175487108.
+ -->
+<html>
+
+  <head>
+  	<title>Daily Read</title>
+  	<style>
+  		/* First we set up some of the basic textual element characteristics along with a little bar we use to divide the title and the buttons. */
+  		body {
+  			font-family: Georgia, serif;
+  			font-size: 100%;
+  			width: 180px;
+  		}
+  		hr {
+  			width: 100%;
+  			height: 1px;
+  			background: #707B7C;	
+  		}
+  		/* 
+  		Next are the CSS classes we use. This starts with a button, customized to my liking. There are four buttons, split up into two distinct groups. 
+  		The first group is just .button and the second is .buttonSmall. We apply several additional classes to each button to differentiate them. 
+  		Common trends: The hover selector is used to give the the user some response prior to committing. 
+  		The active selector used a similar technique, changing the color to something darker, to inform the user the program registered their action.
+  		*/
+  		.button {
+  			width: 160px;
+  			padding: 20px;
+  			border-radius: 8px;
+  			border: none;
+  			text-align: center;
+  			font-family: Georgia, serif;
+  			font-size: 28px;
+  			margin:auto;
+  			display:block;
+  			outline: none;
+  		}
+  		/* 
+  		The first button is .buttonOpen. I wanted it to feel very physical compared to the other buttons so I made it somewhat 3D. 
+  		Increasing the size relative to the other buttons insured it stood out to the user and was easiest to click.
+  		*/
+  		.buttonOpen{
+  			background-color: #4CAF50; /* Green */
+  			box-shadow: 0 10px #999; /* Light Grey */
+  			margin-bottom: 20px;
+  		}
+  		.buttonOpen:hover {
+  			background-color: #3e8e41 /* Darker Green */
+  		}
+		.buttonOpen:active {
+ 			background-color: #3e8e41; /* Same Darker Green */
+  			box-shadow: 0 6px #666; /* Darker Grey */
+  			transform: translateY(4px);
+		}
+		/* 
+		The second button was the manager button, the element I wanted to reveal the settings with. I wanted it to be slick and the animated hover type of button was appealing.
+		For more information about how to produce this effect check out http://www.w3schools.com/css/tryit.asp?filename=trycss_buttons_animate1 
+		*/
+  		.buttonManage{
+  			padding: 5px;
+  			font-size: 14px;
+  		}
+  		.buttonManage span {
+  			display: inline-block;
+  			position: relative;
+ 			transition: 0.5s;
+  		}
+  		.buttonManage span:after {
+  			content: ' websites';
+  			position: absolute;
+ 			opacity: 0;
+  			top: 0;
+  			right: -53px;
+  			transition: 0.5s;
+  		}
+  		.buttonManage:hover span {
+  			padding-right: 60px;
+  		}
+  		.buttonManage:hover span:after {
+  			opacity: 1;
+  			right: 0;
+  		}
+  		.buttonManage:active {
+  			background-color: #A9A9A9; /* Grey */
+  		}
+  		/*
+		These classes actually break up the button routine momentarily to define what the manage button opens up.
+		In the javascript the manage button toggles the .show class on .managePopup. 
+		Because the settings are hidden yet still within the extensions UI (instead of a seperate webpage) I hoped it would feel more simple and less cluttered/overwhelming for the user.
+  		*/
+  		.managePopup {
+  			position: relative;
+  			display: inline-block;
+  		}
+  		.managePopup-content {
+  			display: none;
+    		position: relative;
+    		min-width: 100%;
+    		overflow: auto;
+    		padding-top: 10px;
+  		}
+  		.show {
+  			display:block;
+  		}
+  		/*
+		The remaining buttons are the small ones used for managing the settings. They simply have different characteristic values.
+		When I differentiate between them I went with brighter colors than I normally would because I want them to draw attention and feel more suggestive.
+		I don't include instructions, instead hoping the design is intuitive enough, and I am hoping the choice of button colors along with the example websites is enough.
+  		*/
+  		.buttonSmall {
+  			position: relative;
+  			width: 22px;
+  			height: 17px;
+  			border-radius: 4px;
+  			border: none;
+  			left: 4px;
+  			text-align: center;
+  			font-family: Georgia, serif;
+  			font-size: 10px;
+  			display: inline;
+  			text-align: center;
+  			outline: none;
+  		}
+  		.buttonPlus {
+  			background-color: #00ff00; /* Lime */
+  		}
+  		.buttonPlus:hover {
+  			background-color: #00d800; /* Darker Lime */
+  		}
+  		.buttonPlus:active {
+  			background-color: #00a300; /* Darkest Lime */
+  		}
+  		.buttonMinus {
+  			background-color: #ff1a1a; /* Redish */
+  			font-size: 12px;
+  		}
+  		.buttonMinus:hover {
+  			background-color: #c41313; /* Darker Redish */
+  		}
+  		.buttonMinus:active {
+  			background-color: #960f0f; /* Darkest Red */
+  		}
+
+  	</style>
+  </head>
+
+  <body>
+  	<!-- 
+  	I place everything here, starting with the big open button and followed by the manage button (and its popdown content). 
+	The small dividing bar is then placed to distinguish between the pragmatic buttons and the source material found through the image and text below.
+	The decision to place the logo and information on the bottom was done to insure the large functional button, the reason for the extension, was the easiest to reach.
+	I didn't want the user to accidently click my name or logo, open the hyperlink accidently, and curse vocally. I then load the script to insure all elements have loaded prior.
+  	-->
+    <button id="openButton" class="button buttonOpen"><span>Begin</span></button>
+
+    <button id="manageButton" class="buttonManage button"><span>Manage</span></button>
+ 	<div id="managerPopup" class="managePopup-content">	
+ 		<input type="text" id="site1" class="textField">
+ 		<button id="plus1" class="buttonPlus buttonSmall">&#10010;</button>
+ 		<button id="minus1" class="buttonMinus buttonSmall"><b>&#8722;</b></button>
+ 		<input type="text" id="site2" class="textField">
+ 		<button id="plus2" class="buttonPlus buttonSmall">&#10010;</button>
+ 		<button id="minus2" class="buttonMinus buttonSmall"><b>&#8722;</b></button>
+ 		<input type="text" id="site3" class="textField">
+ 		<button id="plus3" class="buttonPlus buttonSmall">&#10010;</button>
+ 		<button id="minus3" class="buttonMinus buttonSmall"><b>&#8722;</b></button>
+ 		<input type="text" id="site4" class="textField">
+ 		<button id="plus4" class="buttonPlus buttonSmall">&#10010;</button>
+ 		<button id="minus4" class="buttonMinus buttonSmall"><b>&#8722;</b></button>
+ 		<input type="text" id="site5" class="textField">
+ 		<button id="plus5" class="buttonPlus buttonSmall">&#10010;</button>
+ 		<button id="minus5" class="buttonMinus buttonSmall"><b>&#8722;</b></button>
+ 		<input type="text" id="site6" class="textField">
+ 		<button id="plus6" class="buttonPlus buttonSmall">&#10010;</button>
+ 		<button id="minus6" class="buttonMinus buttonSmall"><b>&#8722;</b></button>
+ 	</div>
+    <hr />
+
+    <a href="https://github.com/gusgalarnyk/DailyRead" target="_blank">
+    	<img src="NewsPaper_128x128.png" alt="Newspaper" style="margin: auto; float: left; height: 60px; width: 60px; padding-right: 4px; cursor: default"> 
+    </a>
+
+    <a href="https://www.linkedin.com/in/p-augustus-galarnyk-175487108" target="_blank" style="color: initial; text-decoration: none; cursor: default">
+    	<bigger style="font-size: 150%">Daily Read</bigger>
+    	<smaller style ="font-size: 80%; position: relative; left: 4px; display: block; margin: auto;">by P. Gus Galarnyk</smaller>
+    </a>
+
+    <script src="DailyRead.js"></script>
+
+  </body>
+
+</html>
+
